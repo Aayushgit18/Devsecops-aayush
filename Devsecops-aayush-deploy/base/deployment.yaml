@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aayush-devsecops
+  namespace: aayush-app
+  labels:
+    app: aayush-devsecops
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: aayush-devsecops
+  template:
+    metadata:
+      labels:
+        app: aayush-devsecops
+    spec:
+      containers:
+        - name: aayush-devsecops
+          image: docker.io/aayush595/aayush-devsecops:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
