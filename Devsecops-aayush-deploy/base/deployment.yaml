@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: aayush-devsecops
-          image: docker.io/aayush595/aayush-devsecops:latest
+          image: docker.io/aayush595/aayush-devsecops:b2
           ports:
             - containerPort: 8080
           readinessProbe:
